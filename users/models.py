@@ -3,8 +3,10 @@ from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 from django.utils import timezone
 
-
 # Create your models here.
+from app.models import Product
+
+
 class UserManager(BaseUserManager):
     """カスタムユーザマネージャー"""
     user_in_migrations = True
@@ -40,6 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     initial_point = 50000
     email = models.EmailField("メールアドレス", unique=True)
     point = models.PositiveIntegerField(default=initial_point)
+    fav_products = models.ManyToManyField(Product, blank=True)
     is_staff = models.BooleanField("is_staff", default=False)
     is_active = models.BooleanField("is_active", default=True)
     date_joined = models.DateTimeField("date_joined",
