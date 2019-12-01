@@ -26,7 +26,7 @@ class MyUserCreationForm(UserCreationForm):
 class MyUserAdmin(UserAdmin):
     """カスタムユーザモデルのAdmin"""
     fieldsets = (
-        (None, {'fields': ('email', 'password')}),
+        (None, {'fields': ('email', 'password', 'fav_products')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff',
                                        'is_superuser',
                                        'groups',
