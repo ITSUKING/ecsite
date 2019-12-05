@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load humanize %}
+{% block content %}
+    <div class="product_detail">
+        <div class="product-detail-image">
+            <img src="{{ product.image.src }}" class="product_img">
+        </div>
+        <div class="product_detail-info">
+            <h2>{{ product.name }}</h2>
+            <hr>
+            <div class="point-fav-section">
+                <h4>{{ product.price | intcomma }}ポイント</h4>
+            </div>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+{% endblock %}
