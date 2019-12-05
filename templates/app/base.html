@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!doctype html>
 <html lang="ja">
 <head>
@@ -15,16 +16,24 @@
         <h1><a href="{% url 'app:index' %}">Yamazon</a></h1>
         <div class="header-menu">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'app:logout' %}">LOGOUT</a>
+                <span>Point : {{ user.point | intcomma }}</span>
+                <span><a href="">Fav</a></span>
+                <span><a href="">Cart</a></span>
+                <span><a href="">Order history</a></span>
+                <span><a href="{% url 'app:logout' %}">LOGOUT</a></span>
             {% else %}
-                <a href="{% url 'app:login' %}">LOGIN</a>
+                <span><a href="{% url 'app:login' %}">LOGIN</a></span>
+                <span><a href="{% url 'app:signup' %}">SignUP</a></span>
             {% endif %}
         </div>
     </div>
 </header>
 <div class="container">
-    {% block content %}
-    {% endblock %}
+    {% for message in messages %}
+        <p class="message-{{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
 </div>
 </body>
 </html>

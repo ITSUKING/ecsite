@@ -7,7 +7,8 @@ from .models import Product
 
 
 def index(request):
-    return render(request, 'app/index.html')
+    products = Product.objects.all().order_by('-id')
+    return render(request, 'app/index.html', {'products': products})
 
 
 def signup(request):
